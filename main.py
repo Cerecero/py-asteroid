@@ -45,9 +45,10 @@ def main():
             obj.update(dt)
         for obj in drawable:
             obj.draw(screen)
-            
-
-
+        for asteroid in asteroids:
+            if asteroid.collisions(player):
+                print("Game Over!")
+                # return
         pygame.display.flip()
 
         delta_time.tick(60)
