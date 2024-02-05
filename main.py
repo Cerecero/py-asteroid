@@ -1,6 +1,8 @@
 import pygame
 from constants import *
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 
 def main():
@@ -11,10 +13,10 @@ def main():
 
     delta_time = pygame.time.Clock()
     dt = 0
-    
+    # Sprite groups
     drawable = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
-
+    # Adds to the containers for the PLayer class to updatable and drawable groups
     Player.containers = (updatable, drawable)
 
     # draw the player in the middle of the screen
@@ -23,9 +25,15 @@ def main():
     # print(f"This is drawable { drawable }")
     # print(f"This is updatable: {updatable}")
 
+    asteroids = pygame.sprite.Group()
+    Asteroid.containers = (asteroids, updatable, drawable)
+
+    AsteroidField.containers = (updatable)
+
+    asteroidfield = AsteroidField()
 
     # drawable = pygame.sprite.Group()  # all objects that can be drawn
-    
+
     while True:
         for event in pygame.event.get():
             # Quit window
@@ -33,14 +41,12 @@ def main():
                 return
 
         pygame.Surface.fill(screen, color="black")
-        # draw here, anywhere else the screen renders the background above the player sprite
         for obj in updatable:
             obj.update(dt)
         for obj in drawable:
             obj.draw(screen)
+            
 
-        # player.draw(screen)
-        # player.update(dt)
 
         pygame.display.flip()
 
