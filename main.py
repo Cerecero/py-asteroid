@@ -22,7 +22,9 @@ def main():
                 return
         pygame.Surface.fill(screen, color="black")
         player.draw(screen) # draw here, anywhere else the screen renders the background above the player sprite
+        player.update(dt)
         pygame.display.flip()
+
 
 
         delta_time.tick(60)
