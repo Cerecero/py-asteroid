@@ -32,3 +32,4 @@ class Asteroid(CircleShape):
         neg_asteroid.velocity = self.velocity.rotate(-direction)
         pos_asteroid.velocity *= 1.2
         neg_asteroid.velocity *= 1.2
+        self.kill()
